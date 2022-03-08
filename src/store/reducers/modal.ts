@@ -3,7 +3,8 @@ import { InitialModalState } from '../types/Modal';
 
 const initialModalState: InitialModalState = {
   title: undefined,
-  type: undefined,
+  content: undefined,
+  width: 'lg',
   onAgree: () => {},
   callBack: () => {},
 };
@@ -21,8 +22,6 @@ export const modalReducer = (
         snack: null,
       };
     default:
-      return null;
+      return state;
   }
-
-  return state;
 };

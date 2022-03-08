@@ -18,9 +18,13 @@ export const connectionReducer = (
         currentList: [...state.currentList, action.payload],
       };
     }
+    case ConnectionActionTypes.OPEN_CONNECTION: {
+      return {
+        ...state,
+        currentConnection: action.payload,
+      };
+    }
     default:
       return state;
   }
-
-  return state;
 };

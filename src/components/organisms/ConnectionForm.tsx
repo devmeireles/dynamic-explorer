@@ -7,9 +7,15 @@ import { saveConnection } from 'store/actions/connection';
 import { mapStateToProps } from '../../store';
 import PaperCard from '../molecules/PaperCard';
 import { Connection } from '../../store/types/Connection';
+import { showSnack } from '../../store/actions/snack';
+import { InitialSnackState } from '../../store/types/Snack';
+import { hideModal } from '../../store/actions/modal';
+import Loading from '../atoms/Loading';
 
-const mapDispatchToProps = (dispatch: Dispatch<unknown>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   _saveConnection: (props: Connection) => dispatch(saveConnection(props)),
+  _showSnack: (props: InitialSnackState) => dispatch(showSnack(props)),
+  _hideModal: () => dispatch(hideModal()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -39,7 +45,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const ConnectionForm: React.FC<Props> = ({ _saveConnection }) => {
+const ConnectionForm: React.FC<Props> = ({
+  _saveConnection,
+  _showSnack,
+  _hideModal,
+}) => {
   const classes = useStyles();
 
   const [connectionName, setConnectionName] = React.useState<string>('');
@@ -64,8 +74,17 @@ const ConnectionForm: React.FC<Props> = ({ _saveConnection }) => {
       connectionSecretAccessKey,
     });
 
+    _showSnack({
+      title: 'Connection successfully created',
+      type: 'success',
+    });
+
+    _hideModal();
+
     setLoading(false);
   };
+
+  if (loading) return <Loading />;
 
   return (
     <PaperCard>

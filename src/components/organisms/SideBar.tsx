@@ -9,10 +9,11 @@ import { connect, ConnectedProps } from 'react-redux';
 import { mapStateToProps } from '../../store';
 import { showModal } from '../../store/actions/modal';
 import ConnectionForm from './ConnectionForm';
-import { Connection } from 'store/types/Connection';
+import { Connection } from '../../store/types/Connection';
+import { openConnection } from '../../store/actions/connection';
 
-const mapDispatchToProps = (dispatch: Dispatch<unknown>) => ({
-  openModal: () =>
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+  _openModal: () =>
     dispatch(
       showModal({
         title: 'Creating new database connection',
@@ -22,17 +23,22 @@ const mapDispatchToProps = (dispatch: Dispatch<unknown>) => ({
         onAgree: () => {},
       })
     ),
+
+  _openConnection: (props: Connection) => dispatch(openConnection(props)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = ConnectedProps<typeof connector>;
 
-const Sidebar: React.FC<Props> = ({ openModal, connection }) => {
-  // console.log('item', connection, connection.length);
+const Sidebar: React.FC<Props> = ({
+  _openModal,
+  connection,
+  _openConnection,
+}) => {
   return (
     <>
-      <ListItemButton onClick={() => openModal()}>
+      <ListItemButton onClick={() => _openModal()}>
         <ListItemIcon>
           <AddOutlined />
         </ListItemIcon>
@@ -43,7 +49,10 @@ const Sidebar: React.FC<Props> = ({ openModal, connection }) => {
         connection.currentList.length > 0 &&
         connection.currentList.map((item: Connection) => {
           return (
-            <ListItemButton onClick={() => openModal()}>
+            <ListItemButton
+              key={item.connectionAccessKey}
+              onClick={() => _openConnection(item)}
+            >
               <ListItemIcon>
                 <StorageOutlined />
               </ListItemIcon>

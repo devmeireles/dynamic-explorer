@@ -16,7 +16,8 @@ import { connect, ConnectedProps } from 'react-redux';
 
 import Sidebar from '../components/organisms/Sidebar';
 import { mapStateToProps } from '../store';
-import ModalDialogue from 'components/organisms/ModalDialogue';
+import ModalDialogue from '../components/organisms/ModalDialogue';
+import Snack from '../components/organisms/Snack';
 
 const drawerWidth = 240;
 
@@ -58,7 +59,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = ConnectedProps<typeof connector>;
 
-const App: React.FC<Props> = ({ modal }) => {
+const App: React.FC<Props> = ({ modal, snack }) => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -112,6 +113,7 @@ const App: React.FC<Props> = ({ modal }) => {
                   </Router>
                 </Paper>
               </Grid>
+              {snack && <Snack />}
               {modal && <ModalDialogue />}
             </Grid>
           </Container>

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Breakpoint } from '@mui/material/styles';
 
 export type InitialModalState = {
   title?: string;
   content?: React.ReactNode;
-  width: string;
+  width: Breakpoint;
   onAgree: () => void;
   callBack: () => void;
 };

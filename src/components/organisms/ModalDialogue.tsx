@@ -16,7 +16,7 @@ import { mapStateToProps } from '../../store';
 import { hideModal, showModal } from '../../store/actions/modal';
 import { InitialModalState } from '../../store/types/Modal';
 
-const mapDispatchToProps = (dispatch: Dispatch<unknown>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   _hideModal: () => dispatch(hideModal()),
   _showModal: (props: InitialModalState) => dispatch(showModal(props)),
 });

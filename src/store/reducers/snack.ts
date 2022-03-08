@@ -19,8 +19,6 @@ export const snackReducer = (
         snack: null,
       };
     default:
-      return null;
+      return state;
   }
-
-  return state;
 };
