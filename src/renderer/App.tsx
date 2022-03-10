@@ -18,6 +18,7 @@ import Sidebar from '../components/organisms/Sidebar';
 import { mapStateToProps } from '../store';
 import ModalDialogue from '../components/organisms/ModalDialogue';
 import Snack from '../components/organisms/Snack';
+import Application from '../screens/Application';
 
 const drawerWidth = 240;
 
@@ -102,13 +103,13 @@ const App: React.FC<Props> = ({ modal, snack }) => {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
+          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+            <Grid spacing={3}>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Router>
                     <Routes>
-                      <Route path="/" element={<></>} />
+                      <Route path="/" element={<Application />} />
                     </Routes>
                   </Router>
                 </Paper>
