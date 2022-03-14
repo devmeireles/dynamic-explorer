@@ -103,9 +103,9 @@ const App: React.FC<Props> = ({ modal, snack }) => {
           }}
         >
           <Toolbar />
-          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <Box sx={{ mt: 4, mb: 4, px: 3 }}>
             <Grid spacing={3}>
-              <Grid item xs={12}>
+              <Grid item xs={12} style={{}}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Router>
                     <Routes>
@@ -117,7 +117,7 @@ const App: React.FC<Props> = ({ modal, snack }) => {
               {snack && <Snack />}
               {modal && <ModalDialogue />}
             </Grid>
-          </Container>
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>

@@ -244,7 +244,8 @@
     "react-router-dom": "^6.2.1",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "uuid": "^8.3.2"
   },
   "devEngines": {
     "node": ">=14.x",

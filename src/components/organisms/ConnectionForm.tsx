@@ -2,8 +2,9 @@ import React, { Dispatch } from 'react';
 import { Button, Grid, TextField, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { connect, ConnectedProps } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 
-import { saveConnection } from 'store/actions/connection';
+import { saveConnection } from '../../store/actions/connection';
 import { mapStateToProps } from '../../store';
 import PaperCard from '../molecules/PaperCard';
 import { Connection } from '../../store/types/Connection';
@@ -68,10 +69,21 @@ const ConnectionForm: React.FC<Props> = ({
     setLoading(true);
 
     _saveConnection({
+      id: uuid(),
       connectionName,
       connectionDescription,
       connectionAccessKey,
       connectionSecretAccessKey,
+      tabs: [
+        {
+          id: uuid(),
+          name: 'Query 1',
+        },
+        {
+          id: uuid(),
+          name: 'Query 2',
+        },
+      ],
     });
 
     _showSnack({

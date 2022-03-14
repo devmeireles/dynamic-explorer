@@ -1,9 +1,9 @@
 import React, { Dispatch } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
-import { default as Tabs } from '../components/organisms/Tabs';
+import QueryForm from './QueryForm';
 
-import { mapStateToProps } from '../store';
+import { mapStateToProps } from '../../store';
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({});
 
@@ -11,8 +11,8 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = ConnectedProps<typeof connector>;
 
-const Application: React.FC<Props> = ({ connection }) => {
-  return <div>{connection.currentConnection && <Tabs />}</div>;
+const ConnectionTabContent: React.FC<Props> = ({ connection }) => {
+  return <div>{connection.currentConnection && <QueryForm />}</div>;
 };
 
-export default connector(Application);
+export default connector(ConnectionTabContent);
