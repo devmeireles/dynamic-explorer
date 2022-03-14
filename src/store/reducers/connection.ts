@@ -1,5 +1,5 @@
 import { ConnectionActionTypes } from '../actions/connection';
-import { Connection, InitialConnectionState } from '../types/Connection';
+import { Connection, InitialConnectionState, Tab } from '../types/Connection';
 
 const initialConnectionState: InitialConnectionState = {
   currentList: [],
@@ -22,6 +22,19 @@ export const connectionReducer = (
       return {
         ...state,
         currentConnection: action.payload,
+      };
+    }
+    case ConnectionActionTypes.ADD_TAB: {
+      state.currentConnection?.tabs?.push(action.payload as unknown as Tab);
+      return {
+        ...state,
+      };
+    }
+    case ConnectionActionTypes.REMOVE_TAB: {
+      delete state.currentConnection?.tabs[action.payload]
+      // state.currentConnection?.tabs?.push(action.payload as unknown as Tab);
+      return {
+        ...state,
       };
     }
     default:

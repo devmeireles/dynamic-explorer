@@ -15,7 +15,6 @@ import QueryParamRow from '../molecules/QueryParamRow';
 import { IQueryParamRow } from '../../types/QueryParamRow';
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  _saveConnection: (props: Connection) => dispatch(saveConnection(props)),
   _showSnack: (props: InitialSnackState) => dispatch(showSnack(props)),
   _hideModal: () => dispatch(hideModal()),
 });
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const QueryForm: React.FC<Props> = () => {
+const QueryForm: React.FC<Props> = ({ _showSnack }) => {
   const classes = useStyles();
 
   const [tableName, setTableName] = React.useState<string>('');
@@ -88,6 +87,10 @@ const QueryForm: React.FC<Props> = () => {
     const list = [...inputList];
     list.splice(index, 1);
     setInputList(list);
+    _showSnack({
+      title: 'Query parameter removed successfully',
+      type: 'success',
+    });
   };
 
   /**

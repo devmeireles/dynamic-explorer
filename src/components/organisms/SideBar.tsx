@@ -11,19 +11,10 @@ import { showModal } from '../../store/actions/modal';
 import ConnectionForm from './ConnectionForm';
 import { Connection } from '../../store/types/Connection';
 import { openConnection } from '../../store/actions/connection';
+import { InitialModalState } from '../../store/types/Modal';
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-  _openModal: () =>
-    dispatch(
-      showModal({
-        title: 'Creating new database connection',
-        content: <ConnectionForm />,
-        width: 'sm',
-        callBack: () => {},
-        onAgree: () => {},
-      })
-    ),
-
+  _openModal: (props: InitialModalState) => dispatch(showModal(props)),
   _openConnection: (props: Connection) => dispatch(openConnection(props)),
 });
 
@@ -38,7 +29,17 @@ const Sidebar: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <ListItemButton onClick={() => _openModal()}>
+      <ListItemButton
+        onClick={() =>
+          _openModal({
+            title: 'Creating new database connection',
+            content: <ConnectionForm />,
+            width: 'sm',
+            callBack: () => {},
+            onAgree: () => {},
+          })
+        }
+      >
         <ListItemIcon>
           <AddOutlined />
         </ListItemIcon>
@@ -52,6 +53,10 @@ const Sidebar: React.FC<Props> = ({
             <ListItemButton
               key={item.connectionAccessKey}
               onClick={() => _openConnection(item)}
+              selected={
+                item.connectionAccessKey ===
+                connection.currentConnection?.connectionAccessKey
+              }
             >
               <ListItemIcon>
                 <StorageOutlined />
