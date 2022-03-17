@@ -1,6 +1,9 @@
+import { IQueryParamRow } from '../../types/QueryParamRow';
+
 export type Tab = {
-  id: number;
+  id: string;
   name: string | number;
+  queryParams?: IQueryParamRow[];
 };
 
 export type Connection = {

@@ -78,10 +78,26 @@ const ConnectionForm: React.FC<Props> = ({
         {
           id: uuid(),
           name: 'Query 1',
-        },
-        {
-          id: uuid(),
-          name: 'Query 2',
+          queryParams: [
+            {
+              attributeName: '',
+              attributeValue: '',
+              attributetype: '',
+              condition: '',
+            },
+            {
+              attributeName: '',
+              attributeValue: '',
+              attributetype: '',
+              condition: '',
+            },
+            {
+              attributeName: '',
+              attributeValue: '',
+              attributetype: '',
+              condition: '',
+            },
+          ],
         },
       ],
     });

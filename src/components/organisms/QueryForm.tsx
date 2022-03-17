@@ -46,8 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const QueryForm: React.FC<Props> = ({ _showSnack }) => {
+const QueryForm: React.FC<Props> = ({ _showSnack, connection }) => {
   const classes = useStyles();
+
+  const currentTab = connection.currentConnection.tabs[0];
+
+  console.log('tabs', currentTab.queryParams);
 
   const [tableName, setTableName] = React.useState<string>('');
 
@@ -126,7 +130,7 @@ const QueryForm: React.FC<Props> = ({ _showSnack }) => {
       <Box sx={{ m: 1 }} />
 
       <QueryParamRow
-        inputList={inputList}
+        inputList={currentTab.queryParams}
         handleInputChange={handleInputChange}
         handleRemoveClick={handleRemoveClick}
       />

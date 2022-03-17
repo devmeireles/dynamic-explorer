@@ -32,7 +32,6 @@ export const connectionReducer = (
     }
     case ConnectionActionTypes.REMOVE_TAB: {
       delete state.currentConnection?.tabs[action.payload]
-      // state.currentConnection?.tabs?.push(action.payload as unknown as Tab);
       return {
         ...state,
       };
